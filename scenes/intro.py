@@ -9,7 +9,7 @@ BLACK = (0, 0, 0)
 class IntroScene:
     def __init__(self, screen):
         self.screen = screen
-        self.font = pygame.font.Font(FONT_NAME, 36)
+        self.font = pygame.font.Font(None, 36)
         self.text = [
             "In a world torn apart by greed...",
             "A samurai from the East, seeking vengeance...",
