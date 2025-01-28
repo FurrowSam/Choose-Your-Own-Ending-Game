@@ -2,7 +2,7 @@ import pygame
 from scenes.choice_1 import Choice1Scene
 
 # Fonts and colors
-FONT_NAME = "assets/fonts/your_font.ttf"
+FONT_NAME = "assets/fonts/game_font.ttf"
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
@@ -20,6 +20,17 @@ class IntroScene:
         self.next_scene = None
         self.timer = 0  # For text delay
 
+        # Load background image
+        self.background = pygame.image.load("assets/images/background.png")
+
+        # Load character images
+        self.samurai_image = pygame.image.load("assets/images/samurai.png")
+        self.cowboy_image = pygame.image.load("assets/images/cowboy.png")
+
+        # Scale character images
+        self.samurai_image = pygame.transform.scale(self.samurai_image, (200, 300))  # Adjust size
+        self.cowboy_image = pygame.transform.scale(self.cowboy_image, (200, 300))    # Adjust size
+
     def update(self):
         # Advance text every 2 seconds
         self.timer += 1
@@ -30,8 +41,17 @@ class IntroScene:
                 self.next_scene = Choice1Scene(self.screen)
 
     def draw(self):
-        self.screen.fill(BLACK)
+        # Draw background
+        self.screen.blit(self.background, (0, 0))
+
+        # Draw character images based on the current line
+        if self.current_line >= 1:  # Show samurai after the first line
+            self.screen.blit(self.samurai_image, (100, 200))  # Position samurai on the left
+        if self.current_line >= 2:  # Show cowboy after the second line
+            self.screen.blit(self.cowboy_image, (500, 200))   # Position cowboy on the right
+
+        # Draw text
         if self.current_line < len(self.text):
             line = self.text[self.current_line]
             text_surface = self.font.render(line, True, WHITE)
-            self.screen.blit(text_surface, (50, 300))
+            self.screen.blit(text_surface, (50, 50))  # Adjust position as needed
