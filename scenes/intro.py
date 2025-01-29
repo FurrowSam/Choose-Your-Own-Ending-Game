@@ -1,5 +1,6 @@
 import pygame
-from scenes.go_to_the_city import Choice1Scene
+from scenes.choice_one import Choice1Scene
+
 
 # Fonts and colors
 FONT_NAME = "assets/fonts/game_font.ttf"
