@@ -6,14 +6,11 @@ pygame.init()
 # Set up screen
 screen = pygame.display.set_mode((800, 600))
 
-# Ensure correct working directory
-os.chdir(os.path.dirname(__file__))
+# Correct path definition
+background_path_relative = r"C:\Users\18176\Desktop\samurai_and_cowboy\assets\images\background.png"
 
-# Absolute and relative paths
-background_path_relative = "assets/images/background.png"
-background_path_absolute = os.path.abspath(background_path_relative)
-
-print("Testing path:", background_path_absolute)
+# Print resolved path
+print("Testing path:", background_path_relative)
 
 try:
     background = pygame.image.load(background_path_relative)
