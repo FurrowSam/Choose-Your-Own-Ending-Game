@@ -11,39 +11,26 @@ class Choice1Scene:
         self.selected_choice = 0
         self.next_scene = None
 
-        # Load background with error handling
-        try:
-            self.background = pygame.image.load("assets/images/choice_background.png")
-        except pygame.error:
-            print("Error: Background image not found!")
-            self.background = pygame.Surface((800, 600))
-            self.background.fill((0, 0, 0))  # Fallback to black screen
-
-        # Input delay handling
-        self.last_key_press = 0
-        self.key_cooldown = 200  # Milliseconds between key presses
+        # Load background
+        self.background = pygame.image.load("assets/images/choice_background.png")
 
     def update(self):
         """Handles input and scene transition logic."""
         keys = pygame.key.get_pressed()
-        current_time = pygame.time.get_ticks()
+        if keys[pygame.K_UP]:
+            self.selected_choice = (self.selected_choice - 1) % len(self.choices)
+        if keys[pygame.K_DOWN]:
+            self.selected_choice = (self.selected_choice + 1) % len(self.choices)
+        if keys[pygame.K_RETURN]:
+            if self.selected_choice == 0:
+                self.next_scene = GoToTheCityScene(self.screen)
+            elif self.selected_choice == 1:
+                self.next_scene = AttackCorporationScene(self.screen)
 
-        if current_time - self.last_key_press > self.key_cooldown:
-            if keys[pygame.K_UP]:
-                self.selected_choice = (self.selected_choice - 1) % len(self.choices)
-                self.last_key_press = current_time
-            elif keys[pygame.K_DOWN]:
-                self.selected_choice = (self.selected_choice + 1) % len(self.choices)
-                self.last_key_press = current_time
-            elif keys[pygame.K_RETURN]:
-                if self.selected_choice == 0:
-                    self.next_scene = GoToTheCityScene(self.screen)  # Go to city path
-                elif self.selected_choice == 1:
-                    self.next_scene = AttackCorporationScene(self.screen)  # Attack corporation path
-
-    def draw(self):
-        """Draws the choice menu on the screen with UI enhancements."""
-        self.screen.blit(self.background, (0, 0))
+    def draw(self):  
+        """Draws the choice menu on the screen."""
+        self.screen.fill((0, 0, 0))  # Clears the previous screen
+        self.screen.blit(self.background, (0, 0))  # Draws new background
 
         # Render main question
         text_surface = self.font.render(self.text, True, (255, 255, 255))
