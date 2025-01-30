@@ -15,21 +15,18 @@ class AttackCorporationScene:
         self.timer = 0
 
         # Load background
-        try:
-            self.background = pygame.image.load("assets/images/corporation_background.png")
-        except pygame.error:
-            print("Error: Background image not found!")
-            self.background = pygame.Surface((800, 600))
-            self.background.fill((20, 20, 20))  # Dark fallback background
+        self.background = pygame.image.load("assets/images/corporation_background.png")
+
+        # Scale background image
+        self.background = pygame.transform.scale(self.background, (800, 600))
 
         # Load character images
-        try:
-            self.samurai_image = pygame.image.load("assets/images/samurai.png")
-            self.cowboy_image = pygame.image.load("assets/images/cowboy.png")
-        except pygame.error:
-            print("Error: Character images not found!")
-            self.samurai_image = None
-            self.cowboy_image = None
+        self.samurai_image = pygame.image.load("assets/images/samurai.png")
+        self.cowboy_image = pygame.image.load("assets/images/cowboy.png")
+
+        # Scale character images
+        self.samurai_image = pygame.transform.scale(self.samurai_image, (200, 300))  # Adjust size
+        self.cowboy_image = pygame.transform.scale(self.cowboy_image, (200, 300))   
 
     def update(self):
         """Advance text every 3 seconds or move to the next scene."""

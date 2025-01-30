@@ -7,6 +7,10 @@ FONT_NAME = "assets/fonts/game_font.ttf"
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
+
+
+
+
 class IntroScene:
     def __init__(self, screen):
         self.screen = screen
@@ -39,9 +43,9 @@ class IntroScene:
         self.cowboy_image = pygame.transform.scale(self.cowboy_image, (200, 300))    # Adjust size
 
     def update(self):
-        # Advance text every 2 seconds
+        # Advance text every 4 seconds 
         self.timer += 1
-        if self.timer > 120:  # 2 seconds at 60 FPS
+        if self.timer > 240:  # 4 seconds at 60 FPS
             self.timer = 0
             self.current_line += 1
             if self.current_line >= len(self.text):

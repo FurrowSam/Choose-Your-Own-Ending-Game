@@ -3,7 +3,7 @@ import pygame
 class CorporationInfiltrationScene:
     def __init__(self, screen):
         self.screen = screen
-        self.font = pygame.font.Font("assets/fonts/game_font.ttf", 36)
+        self.font = pygame.font.Font(None, 36)
         self.text = "How do you approach the corporation?"
         self.choices = ["Sneak in silently", "Fight your way through"]
         self.selected_choice = 0
