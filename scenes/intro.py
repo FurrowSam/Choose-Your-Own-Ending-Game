@@ -22,7 +22,7 @@ class IntroScene:
             "A samurai from the East, seeking vengeance...",
             "A cowboy from the West, searching for justice...",
             "Their destinies intertwined, they must fight to save their world...",
-            "Together, they must face the darkness of the corporation..."
+            "Together, they must face the evil corporation..."
         ]
         self.current_line = 0
         self.next_scene = None
